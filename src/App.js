@@ -6,6 +6,7 @@ import Landing from "./scenes/Landing";
 import LineGradient from "./components/LineGradient";
 import Projects from "./scenes/Projects";
 import Contact from "./scenes/Contact";
+import About from "./scenes/About";
 import useOnScreen from "./hooks/useOnScreen";
 
 function App() {
@@ -16,9 +17,11 @@ function App() {
   const landingRef = useRef();
   const projectsRef = useRef();
   const contactRef = useRef();
+  const aboutRef = useRef();
   const isContactVisible = useOnScreen(contactRef);
   const isProjectsVisible = useOnScreen(projectsRef);
   const isLandingVisible = useOnScreen(landingRef);
+  const isAboutVisible = useOnScreen(aboutRef);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -33,6 +36,8 @@ function App() {
         setSelectedPage("contact");
       } else if (isProjectsVisible) {
         setSelectedPage("projects");
+      } else if (isAboutVisible) {
+        setSelectedPage("about");
       } else if (isLandingVisible) {
         setSelectedPage("home");
       }
@@ -58,6 +63,10 @@ function App() {
           />
         )}
         <Landing setSelectedPage={setSelectedPage} />
+      </div>
+      <LineGradient />
+      <div ref={aboutRef} className="w-5/6 mx-auto">
+        <About />
       </div>
       <LineGradient />
       <div ref={projectsRef} className="w-5/6 mx-auto">

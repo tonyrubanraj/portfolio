@@ -39,7 +39,7 @@ const Landing = ({ setSelectedPage }) => {
               </span>
             </span>
           </p>
-          <p className="mt-10 mb-7 text-sm text-center md:text-start">
+          <p className="mt-10 mb-7 text-sm text-center md:text-start font-opensans">
             I am a graduate student currently pursuing M.Sc in Big Data
             Analytics at Trent University
           </p>

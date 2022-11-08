@@ -2,11 +2,17 @@ import { useState } from "react";
 import AnchorLink from "react-anchor-link-smooth-scroll";
 import useMediaQuery from "../hooks/useMediaQuery";
 
-const Link = ({ page, selectedPage, setSelectedPage }) => {
+const Link = ({ page, selectedPage, setSelectedPage, isTopOfPage = true }) => {
   const pageLowerCase = page.toLowerCase();
   return (
     <AnchorLink
-      className={`${selectedPage === pageLowerCase ? "text-yellow" : ""}
+      className={`${
+        selectedPage === pageLowerCase
+          ? isTopOfPage
+            ? "text-yellow"
+            : "text-deep-blue"
+          : ""
+      }
       hover:text-yellow transition duration-500`}
       href={`#${pageLowerCase}`}
       onClick={() => setSelectedPage(pageLowerCase)}
@@ -19,7 +25,7 @@ const Link = ({ page, selectedPage, setSelectedPage }) => {
 const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
   const [isMenuToggled, setIsMenuToggled] = useState(false);
   const isAboveSmallScreens = useMediaQuery("(min-width: 768px)");
-  const navBackground = isTopOfPage ? "" : "bg-red ";
+  const navBackground = isTopOfPage ? "" : "bg-yellow ";
 
   return (
     <nav className={`${navBackground}z-40 w-full fixed top-0 py-6`}>
@@ -33,26 +39,31 @@ const Navbar = ({ isTopOfPage, selectedPage, setSelectedPage }) => {
               page="Home"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
+              isTopOfPage={isTopOfPage}
             />
             <Link
               page="About"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
+              isTopOfPage={isTopOfPage}
             />
             {/* <Link
               page="Skills"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
+              isTopOfPage={isTopOfPage}
             /> */}
             <Link
               page="Projects"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
+              isTopOfPage={isTopOfPage}
             />
             <Link
               page="Contact"
               selectedPage={selectedPage}
               setSelectedPage={setSelectedPage}
+              isTopOfPage={isTopOfPage}
             />
           </div>
         ) : (
